@@ -46,7 +46,7 @@ test("makes getName method to return intern's name", () => {
     expect(intern.getEmail()).toEqual(expect.any(String));
   });
   
-  test("makes getGithub method and returns intern's github info", () => {
+  test("makes getSchool method  to returns intern's school name", () => {
     const intern = new Intern(
         "Jessica",
         84237984,
