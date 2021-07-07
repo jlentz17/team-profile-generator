@@ -1,12 +1,11 @@
-const inquirer = require("inquirer");
+const { prompt } = require("inquirer");
 const fs = require("fs");
 const generateHtml = require("./src/newHtmlTemplate");
 
-const Employee = require("./Employee");
-const Engineer = require("./Engineer");
-const Intern = require("./Intern");
-const Manager = require("./Manager");
-const { functionDeclaration } = require("@babel/types");
+// const Employee = require("./Employee");
+const Engineer = require("./lib/Engineer");
+const Intern = require("./lib/Intern");
+const Manager = require("./lib/Manager");
 
 // make an empty array that new employees will be pushed into
 
@@ -210,28 +209,18 @@ function askQuestions() {
 
 function addEngineer() {
   prompt(engineerQuestions).then((data) => {
-    const engineer = new Engineer(
-      data.name,
-      data.id,
-      data.email,
-      data.github
-    );
-    teamArr.push(enginneer);
+    const engineer = new Engineer(data.name, data.id, data.email, data.github);
+    teamArr.push(engineer);
     return addToTeamArr();
-  })
+  });
 }
 
 function addIntern() {
   prompt(internQuestions).then((data) => {
-    const intern = new Intern(
-      data.name,
-      dfata.id,
-      data.email,
-      data.school
-    );
+    const intern = new Intern(data.name, data.id, data.email, data.school);
     teamArr.push(intern);
     return addToTeamArr();
-  })
+  });
 }
 
 function addToTeamArr() {
@@ -241,22 +230,23 @@ function addToTeamArr() {
     } else if (data.addTeammate === "Add an intern?") {
       addIntern();
     } else {
-      console.log("teamArr =" + teamArr);
-      const membersHtml = generateHtml();
-      const fullPage = newHtmlTemplate(membersHtml);
+      // fs.writeFile("./dist/index.html", )
+      console.log(teamArr);
+      generateHtml(teamArr);
     }
-  })
-} 
-
-function writeToHTML(fileName, readme) {
-  fs.writeFile(fileName, readme, (err) => {
-    if (err) throw err;
-    console.log("New Readme File Created!");
   });
 }
 
-promptUser().then((readMe) => {
-  writeToReadme("READMEtest.md", generateMarkdown(readMe));
-  // return generateMarkdown(readMe);
-});
-module.exports = Index;
+// function writeToHTML(fileName, readme) {
+//   fs.writeFile(fileName, readme, (err) => {
+//     if (err) throw err;
+//     console.log("New Readme File Created!");
+//   });
+// }
+
+// promptUser().then((readMe) => {
+//   writeToReadme("READMEtest.md", generateMarkdown(readMe));
+//   // return generateMarkdown(readMe);
+// });
+// module.exports = index;
+askQuestions();
