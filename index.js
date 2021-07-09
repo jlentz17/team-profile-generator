@@ -232,8 +232,11 @@ function addToTeamArr() {
       addIntern();
     } else {
       console.log(teamArr);
-      const fullHtmlPage = generateHtml()
-      generateHtml(teamArr);
+      const teamMembersHtml =
+      initHtmlPage();
+
+      const fullHtml = generateHtml(teamMembersHtml);
+      writeFile("./dist/index.html", fullHtml);
     }
   });
 }
@@ -257,30 +260,34 @@ function initHtmlPage() {
         specialProperty = `OfficeNumber: ${employee.officeNumber}`
       }
 
-      // // create card html card templates
-      // allTeamMembers = allTeamMembers + `
-      // <div class="col">
-      //       <div class="card" style="width: 18rem">
-      //           <div class="card-header">
-      //           <h3>${person.name}</h3>
-      //           <h4>${title}</h4>
-      //           </div>
-      //           <ul class="list-group list-group-flush">
-      //           <li class="list-group-item employeeProperties"> Employee ID: <span>${person.id}</span></li>
-      //           <li class="list-group-item employeeProperties"> Email: <span>${person.email}</span></li>
-      //           <li class="list-group-item employeeProperties"> <span>${uniqueAttribute}</span></li>
-      //           </ul>
-      //       </div>
-      //   </div>
-      // `
+      // create card html card templates
+      allTeamMembers = allTeamMembers + `
+      <div class="col">
+            <div class="card" style="width: 18rem">
+                <div class="card-header">
+                <h3>${employee.name}</h3>
+                <h4>${title}</h4>
+                </div>
+                <ul class="list-group list-group-flush">
+                <li class="list-group-item employeeProperties"> Employee ID: <span>${employee.id}</span></li>
+                <li class="list-group-item employeeProperties"> Email: <span>${employee.email}</span></li>
+                <li class="list-group-item employeeProperties"> <span>${specialProperty}</span></li>
+                </ul>
+            </div>
+        </div>
+      `
   })
+  return allTeamMembers;
 }
 
-// function writeFile(fileName, fullHtmlPage) {
-//   fs.writeFile("./dist/index.html", fullHtmlPage(teamArr), err => {
-//   if (err) throw err;
-
-// })
+function writeFile(file, fullHtmlPage) {
+  fs.writeFile(file, fullHtmlPage, err => {
+  if (err) {
+    console.log("ERROR");
+    return;
+  }
+});
+}
 
 askQuestions();
 
