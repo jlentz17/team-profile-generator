@@ -1,3 +1,4 @@
+const fs = require("fs");
 function generateHtml(teamArr) {
     for (let i = 0; i < teamArr.length; i++) {
         if (teamArr[i].role === "Engineer") {
@@ -14,5 +15,9 @@ function generateHtml(teamArr) {
         
       }
 }
+fs.writeFile("../dist/index.html", generateHtml(teamArr), err => {
+  if (err) throw err;
 
+  console.log("Page works!!")
+})
 module.exports = generateHtml;

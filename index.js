@@ -227,6 +227,7 @@ function addToTeamArr() {
   prompt(addTeammate).then((data) => {
     if (data.addTeammate === "Add an engineer?") {
       addEngineer();
+      
     } else if (data.addTeammate === "Add an intern?") {
       addIntern();
     } else {
@@ -237,12 +238,11 @@ function addToTeamArr() {
   });
 }
 
-// function writeToHTML(fileName, readme) {
-//   fs.writeFile(fileName, readme, (err) => {
-//     if (err) throw err;
-//     console.log("New Readme File Created!");
-//   });
-// }
+fs.writeFile("./dist/index.html", generateHtml(teamArr), err => {
+  if (err) throw err;
+
+  console.log("Page works!!")
+})
 
 // promptUser().then((readMe) => {
 //   writeToReadme("READMEtest.md", generateMarkdown(readMe));
@@ -250,3 +250,5 @@ function addToTeamArr() {
 // });
 // module.exports = index;
 askQuestions();
+
+module.exports = [teamArr];
