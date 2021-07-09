@@ -231,24 +231,57 @@ function addToTeamArr() {
     } else if (data.addTeammate === "Add an intern?") {
       addIntern();
     } else {
-      // fs.writeFile("./dist/index.html", )
       console.log(teamArr);
+      const fullHtmlPage = generateHtml()
       generateHtml(teamArr);
     }
   });
 }
+// make a function that initializes html cards
+function initHtmlPage() {
+  // make a string of cards for each employee
+  let allTeamMembers = "";
+  teamArr.forEach(employee => {
+    let title = "";
+    let specialProperty = "";
+    if ("gitub" in employee) {
+      title = "Engineer";
+      specialProperty = `Github: ${employee.github}`
+    } else if
+    ("school" in employee) {
+        title = "Intern"
+        specialProperty = `School Name: ${employee.school}`
+    } else if 
+      ("officeNumber" in employee) {
+        title = "Manager"
+        specialProperty = `OfficeNumber: ${employee.officeNumber}`
+      }
 
-fs.writeFile("./dist/index.html", generateHtml(teamArr), err => {
-  if (err) throw err;
+      // // create card html card templates
+      // allTeamMembers = allTeamMembers + `
+      // <div class="col">
+      //       <div class="card" style="width: 18rem">
+      //           <div class="card-header">
+      //           <h3>${person.name}</h3>
+      //           <h4>${title}</h4>
+      //           </div>
+      //           <ul class="list-group list-group-flush">
+      //           <li class="list-group-item employeeProperties"> Employee ID: <span>${person.id}</span></li>
+      //           <li class="list-group-item employeeProperties"> Email: <span>${person.email}</span></li>
+      //           <li class="list-group-item employeeProperties"> <span>${uniqueAttribute}</span></li>
+      //           </ul>
+      //       </div>
+      //   </div>
+      // `
+  })
+}
 
-  console.log("Page works!!")
-})
+// function writeFile(fileName, fullHtmlPage) {
+//   fs.writeFile("./dist/index.html", fullHtmlPage(teamArr), err => {
+//   if (err) throw err;
 
-// promptUser().then((readMe) => {
-//   writeToReadme("READMEtest.md", generateMarkdown(readMe));
-//   // return generateMarkdown(readMe);
-// });
-// module.exports = index;
+// })
+
 askQuestions();
 
 module.exports = [teamArr];

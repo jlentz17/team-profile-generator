@@ -1,23 +1,34 @@
-const fs = require("fs");
-function generateHtml(teamArr) {
-    for (let i = 0; i < teamArr.length; i++) {
-        if (teamArr[i].role === "Engineer") {
-            let engineerCard = 
-            // create card and use varaible to pass in as string literal
-          console.log(teamArr[i].name);
-        } 
-        if (teamArr[i].role === "Intern") {
-          console.log(teamArr[i].name);
-        } 
-        if (teamArr[i].role === "Manager") {
-          console.log(teamArr[i].name);
-        } 
-        
-      }
+function generateHtml(data) {
+    return `
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+      integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+      crossorigin="anonymous"/>
+    <link rel="stylesheet" href="style.css" />
+    <title>My Team Profile</title>
+  </head>
+  <body>
+  <!----------------------Header---------------------->
+    <header>
+        <nav  class="header navbar navbar-expand-lg">
+          <a class="header navbar-brand" href="#"> My Team </a>
+        </nav>
+    </header>
+    <!------------Employee Cards Container----------->
+    <div id=employeeCards class="row">
+    ${data}
+    </div>
+      </div>
+    </div>
+  </body>
+</html>
+`;
 }
-fs.writeFile("../dist/index.html", generateHtml(teamArr), err => {
-  if (err) throw err;
-
-  console.log("Page works!!")
-})
 module.exports = generateHtml;
