@@ -1,3 +1,4 @@
+// import npm packages
 const { prompt } = require("inquirer");
 const fs = require("fs");
 const generateHtml = require("./src/newHtmlTemplate");
@@ -14,6 +15,8 @@ const teamArr = [];
 // prompts
 
 // const promptUser = () => {
+
+// 
 
 const engineerQuestions = [
   {
@@ -202,6 +205,7 @@ function askQuestions() {
       data.email,
       data.officeNumber
     );
+    // push the team member into the array
     teamArr.push(manager);
     addToTeamArr();
   });
@@ -247,9 +251,9 @@ function initHtmlPage() {
   teamArr.forEach(employee => {
     let title = "";
     let specialProperty = "";
-    if ("gitub" in employee) {
+    if ("github" in employee) {
       title = "Engineer";
-      specialProperty = `Github: ${employee.github}`
+      specialProperty = `<a target="_blank" href="https://www.github.com/${employee.github}"> Github: ${employee.github}</a>`
     } else if
     ("school" in employee) {
         title = "Intern"
@@ -261,7 +265,7 @@ function initHtmlPage() {
       }
 
       // create card html card templates
-      allTeamMembers = allTeamMembers + `
+      allTeamMembers += `
       <div class="col">
             <div class="card" style="width: 18rem">
                 <div class="card-header">
@@ -270,7 +274,7 @@ function initHtmlPage() {
                 </div>
                 <ul class="list-group list-group-flush">
                 <li class="list-group-item employeeProperties"> Employee ID: <span>${employee.id}</span></li>
-                <li class="list-group-item employeeProperties"> Email: <span>${employee.email}</span></li>
+                <a href="mailto:${employee.email}" class="list-group-item employeeProperties"> Email: <span>${employee.email}</span></a>
                 <li class="list-group-item employeeProperties"> <span>${specialProperty}</span></li>
                 </ul>
             </div>

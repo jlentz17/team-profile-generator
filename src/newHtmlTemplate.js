@@ -15,13 +15,13 @@ function generateHtml(data) {
     <title>My Team Profile</title>
   </head>
   <body>
-  <!----------------------Header---------------------->
+  <!---HEADER---->
     <header>
         <nav  class="header navbar navbar-expand-lg">
           <a class="header navbar-brand" href="#"> My Team </a>
         </nav>
     </header>
-    <!------------Employee Cards Container----------->
+    <!---Employee Cards Container--->
     <div id=employeeCards class="row">
     ${data}
     </div>
