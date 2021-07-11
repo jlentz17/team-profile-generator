@@ -1,6 +1,7 @@
 const { expect } = require("@jest/globals");
 const Intern = require("../lib/Intern");
 
+// tests
 test("creates an intern object", () => {
   const intern = new Intern(
     "Jessica",

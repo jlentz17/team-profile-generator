@@ -1,4 +1,6 @@
 // import npm packages
+
+// destructured ie; inquirer.prompt
 const { prompt } = require("inquirer");
 const fs = require("fs");
 const generateHtml = require("./src/newHtmlTemplate");
@@ -13,10 +15,6 @@ const Manager = require("./lib/Manager");
 const teamArr = [];
 
 // prompts
-
-// const promptUser = () => {
-
-// 
 
 const engineerQuestions = [
   {
@@ -255,7 +253,7 @@ function writeFile(file, fullHtmlPage) {
   }
 });
 }
-
+// call askQuestions function to start user prompts
 askQuestions();
 
 module.exports = [teamArr];

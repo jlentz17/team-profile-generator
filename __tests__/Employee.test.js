@@ -1,6 +1,8 @@
 const { expect } = require("@jest/globals");
 const Employee = require("../lib/Employee");
 
+// tests
+
 test("creates an employee object", () => {
   const employee = new Employee("Lars", 500789, "larsbars@yahoo.com");
 
