@@ -1,7 +1,7 @@
 # Team Profile Generator
 
-[GitHub Repo](https://github.com/jlentz17/team-profile-manager)  
-[Video Walkthrough]()
+[GitHub Repo](https://github.com/jlentz17/team-profile-generator)  
+[Video Walkthrough](https://youtu.be/Hxp1zZEKxK8)
 
 ## Description
 
