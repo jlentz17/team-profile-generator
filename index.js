@@ -236,58 +236,21 @@ function addToTeamArr() {
       addIntern();
     } else {
       console.log(teamArr);
-      const teamMembersHtml =
-      initHtmlPage();
 
-      const fullHtml = generateHtml(teamMembersHtml);
+
+      // @ToDo move HTML cards to newHtmlTemplate and pass in teamArr
+      const fullHtml = generateHtml(teamArr);
       writeFile("./dist/index.html", fullHtml);
     }
   });
 }
 // make a function that initializes html cards
-function initHtmlPage() {
-  // make a string of cards for each employee
-  let allTeamMembers = "";
-  teamArr.forEach(employee => {
-    let title = "";
-    let specialProperty = "";
-    if ("github" in employee) {
-      title = "Engineer";
-      specialProperty = `<a target="_blank" href="https://www.github.com/${employee.github}"> Github: ${employee.github}</a>`
-    } else if
-    ("school" in employee) {
-        title = "Intern"
-        specialProperty = `School Name: ${employee.school}`
-    } else if 
-      ("officeNumber" in employee) {
-        title = "Manager"
-        specialProperty = `OfficeNumber: ${employee.officeNumber}`
-      }
 
-      // create card html card templates
-      allTeamMembers += `
-      <div class="col">
-            <div class="card" style="width: 18rem">
-                <div class="card-header">
-                <h3>${employee.name}</h3>
-                <h4>${title}</h4>
-                </div>
-                <ul class="list-group list-group-flush">
-                <li class="list-group-item employeeProperties"> Employee ID: <span>${employee.id}</span></li>
-                <a href="mailto:${employee.email}" class="list-group-item employeeProperties"> Email: <span>${employee.email}</span></a>
-                <li class="list-group-item employeeProperties"> <span>${specialProperty}</span></li>
-                </ul>
-            </div>
-        </div>
-      `
-  })
-  return allTeamMembers;
-}
 
 function writeFile(file, fullHtmlPage) {
   fs.writeFile(file, fullHtmlPage, err => {
   if (err) {
-    console.log("ERROR");
+    console.log("ERROR", err);
     return;
   }
 });
